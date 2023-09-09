@@ -1,0 +1,19 @@
+server:
+  port: 8080
+
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql:///hl_test?serverTimezone=UTC
+    username: root
+    password: abcde
+
+mybatis-plus:
+  type-aliases-package: com.qrm
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+
+pagehelper:
+  reasonable: true

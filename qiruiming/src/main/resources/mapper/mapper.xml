@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qrm.system.mapper.UserMapper">
+
+    <select id="selectUsr" parameterType="com.qrm.system.entity.User" resultType="com.qrm.system.entity.User">
+        select
+            id,
+            emp_name,
+            sex,
+            age,
+            dept_name,
+            emp_degree_name
+            from hl_test
+        <where>
+            state = 1
+            <if test="id != null and id !=''">
+                AND id = #{id}
+            </if>
+            <if test="empName != null and empName !=''">
+                AND emp_name = #{empName}
+            </if>
+            <if test="deptName != null and deptName !=''">
+                AND dept_name = #{deptName}
+            </if>
+            <if test="empDegreeName != null and empDegreeName !=''">
+                AND emp_degree_name = #{empDegreeName}
+            </if>
+        </where>
+    </select>
+
+    <update id="deleteUser" parameterType="com.qrm.system.entity.User">
+        update hl_test
+        set state = #{state},last_time = #{lastTime}
+        where id = #{id}
+    </update>
+    <!--  -->
+    <update id="updateUser" parameterType="com.qrm.system.entity.User">
+        update hl_test
+        set
+        emp_name = #{empName},
+        sex = #{sex},
+        age = #{age},
+        dept_name = #{deptName},
+        emp_degree_name = #{empDegreeName},
+        last_time = #{lastTime}
+        where id = #{id}
+    </update>
+
+    <insert id="insertUser" parameterType="com.qrm.system.entity.User">
+        insert into hl_test
+        (
+            emp_name,
+            sex,
+            age,
+            dept_name,
+            emp_degree_name,
+            state,
+            cr_time,
+            last_time
+        )
+        values
+            (#{empName},
+            #{sex},
+            #{age},
+            #{deptName},
+            #{empDegreeName},
+            #{state},
+            #{crTime},
+            #{lastTime})
+    </insert>
+</mapper>
